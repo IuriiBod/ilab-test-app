@@ -1,0 +1,15 @@
+<md-card class="card" *ngIf="giphy">
+  <md-card-header>
+    <div md-card-avatar class="header-image"></div>
+    <md-card-title>Import date: {{ giphy.import_datetime }}</md-card-title>
+    <md-card-subtitle>Rating: {{ giphy.rating }}</md-card-subtitle>
+  </md-card-header>
+  <img md-card-image src="{{ giphy.images.original.url }}">
+  <md-card-content>
+    <p>Description: {{ giphy.slug }}</p>
+    <p>URL: {{ giphy.embed_url }}</p>
+  </md-card-content>
+  <md-card-actions>
+    <button md-button class="button" (click)="goBack()">Back</button>
+  </md-card-actions>
+</md-card>

@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <md-input-container class="w50">
+                <input mdInput placeholder="Enter keyword at least 3 symbols" [value]="value" [formControl]="inputControl">
+            </md-input-container>
+        </div>
+        <div class="form-group">
+            <md-select [(ngModel)]="limit" placeholder="Select limit">
+                <md-option *ngFor="let limit of limits" [value]="limit">{{ limit }}</md-option>
+            </md-select>
+        </div>
+    </div>    
+</div>
+
+<div class="img-wrapper" *ngFor="let g of giphys">
+    <a [routerLink]="['/detail', g.id]">
+        <img class="img" src="{{g.images.downsized_medium.url}}">    
+    </a>
+</div>
