@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { SearchComponent } from './components/search/search.component';
 import { GiphyDetailComponent } from './components/detail/detail.component';
 
-import { SearchService }  from './services/search.service';
+import { SearchService } from './services/search.service';
 
 @NgModule({
   declarations: [

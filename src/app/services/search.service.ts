@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -7,14 +7,14 @@ export class SearchService {
   private giphys: any;
   private apiKey = 'dc6zaTOxFJmzC';
   private apiUrl = 'http://api.giphy.com/v1/gifs/search';
- 
+
   constructor(
-    private http: Http) { 
+    private http: Http) {
     this.giphys = [];
   }
 
   getGiphys(searchQuery: string, limit: number): Promise<any> {
-    let query = this.apiUrl + '?q=' + searchQuery + '&api_key=' + this.apiKey + '&limit=' + limit;
+    const query = this.apiUrl + '?q=' + searchQuery + '&api_key=' + this.apiKey + '&limit=' + limit;
 
     return this.http.get(query)
       .toPromise()
@@ -27,7 +27,7 @@ export class SearchService {
 
   getCashedGiphys(): Promise<any> {
     return Promise.resolve(this.giphys);
-  } 
+  }
 
   getGiphy(id: string): Promise<any> {
     return Promise.resolve(this.giphys.find(item => item.id === id));

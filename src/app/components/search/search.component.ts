@@ -2,10 +2,10 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 
-import { SearchService } from "../../services/search.service";
+import { SearchService } from '../../services/search.service';
 
 @Component({
-  selector: 'search',
+  selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
@@ -14,10 +14,10 @@ export class SearchComponent implements OnInit {
     @Input()
     value: string
     limit: number
-    limits:Array<number> = [5, 10, 20, 30];
+    limits: Array<number> = [5, 10, 20, 30];
     giphys: any
     inputControl = new FormControl();
-        
+
     constructor(
       private searchService: SearchService) {
     }
@@ -25,7 +25,7 @@ export class SearchComponent implements OnInit {
     ngOnInit() {
       this.value = '';
       this.limit = 5;
-      
+
       this.searchService.getCashedGiphys()
         .then(result => this.giphys = result)
         .catch(this.handleError);
@@ -33,7 +33,7 @@ export class SearchComponent implements OnInit {
       this.inputControl.valueChanges
         .debounceTime(1000)
         .subscribe(value => this.getGiphys(value));
-    }    
+    };
 
     getGiphys(value: string) {
       this.value = value;
@@ -43,7 +43,7 @@ export class SearchComponent implements OnInit {
         .then(result => this.giphys = result.data)
         .catch(this.handleError);
       }
-    }
+    };
 
     private handleError(error: any) {
       return Promise.reject(error.statusText || error).then(function() {
@@ -51,5 +51,5 @@ export class SearchComponent implements OnInit {
       }, function() {
         return {error: error.json()};
       });
-    }
+    };
 }
